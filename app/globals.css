@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0fdf4;
+  --color-brand-100: #dcfce7;
+  --color-brand-200: #bbf7d0;
+  --color-brand-300: #86efac;
+  --color-brand-400: #4ade80;
+  --color-brand-500: #22c55e;
+  --color-brand-600: #15803D;
+  --color-brand-700: #15803D;
+  --color-brand-800: #14532D;
+  --color-brand-900: #14532D;
+  --color-brand-950: #052e16;
+  
+  --color-accent: #F59E0B;
+  --color-accent-light: #FCD34D;
+  --color-accent-dark: #B45309;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+}
+
+/* J'ai réduit un peu la marge pour que le texte respire mieux */
+.container-page { 
+  max-width: 80rem; 
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* Un peu plus d'espace que 1rem */
+  padding-right: 1.5rem;
+}
+
+.card { 
+  background-color: #ffffff;
+  border-radius: 1rem; 
+  border: 1px solid #E2E8F0; 
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); 
+}
+
+.btn-primary { 
+  background-color: #15803D;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background-color: #14532D; }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary { 
+  background-color: #ffffff;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { background-color: #F8FAFC; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.1); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee2 {
+  animation: marquee2 20s linear infinite;
+}
