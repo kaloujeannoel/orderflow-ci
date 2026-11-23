@@ -2,8 +2,16 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import type { ActionState } from "@/lib/action-state";
 
-export async function addOrderAction(prevState: any, formData: FormData) {
+interface OrderItemInput {
+  product_id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export async function addOrderAction(_prevState: ActionState, formData: FormData): Promise<ActionState> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Non autorisé" };
@@ -16,7 +24,7 @@ export async function addOrderAction(prevState: any, formData: FormData) {
   const itemsRaw = formData.get("items") as string;
   
   if (!itemsRaw) return { error: "Ajoutez au moins un produit." };
-  const items = JSON.parse(itemsRaw);
+  const items = JSON.parse(itemsRaw) as OrderItemInput[];
 
   // Calculer le total
   let total = 0;
@@ -38,7 +46,7 @@ export async function addOrderAction(prevState: any, formData: FormData) {
   if (orderError) return { error: orderError.message };
 
   // Créer les lignes de commande
-  const orderItems = items.map((item: any) => ({
+  const orderItems = items.map((item) => ({
     order_id: order.id,
     product_id: item.product_id,
     product_name: item.name,

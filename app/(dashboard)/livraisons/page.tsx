@@ -6,9 +6,18 @@ import { AddDeliveryModal } from "@/components/dashboard/AddDeliveryModal";
 import { createClient } from "@/lib/supabase/client";
 import { updateDeliveryStatusAction } from "./actions";
 
+interface Delivery {
+  id: string;
+  delivery_number: string;
+  status: string;
+  driver_name: string | null;
+  fee: number;
+  customers: { name: string } | null;
+}
+
 export default function DeliveriesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [deliveries, setDeliveries] = useState<any[]>([]);
+  const [deliveries, setDeliveries] = useState<Delivery[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchDeliveries = async () => {
@@ -25,6 +34,7 @@ export default function DeliveriesPage() {
     setLoading(false);
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchDeliveries(); }, []);
 
   const handleCloseModal = () => { 

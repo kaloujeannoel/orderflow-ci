@@ -5,9 +5,17 @@ import { Package, Plus } from "lucide-react";
 import { AddProductModal } from "@/components/dashboard/AddProductModal";
 import { createClient } from "@/lib/supabase/client";
 
+interface Product {
+  id: string;
+  name: string;
+  sku: string | null;
+  sale_price: number;
+  stock_quantity: number;
+}
+
 export default function ProductsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Fonction pour charger les produits depuis Supabase
@@ -37,6 +45,7 @@ export default function ProductsPage() {
 
   // Charger les produits au démarrage
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProducts();
   }, []);
 

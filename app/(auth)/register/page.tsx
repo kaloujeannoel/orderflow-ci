@@ -12,7 +12,7 @@ export default function RegisterPage() {
       <div className="card w-full max-w-lg p-8">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-bold text-slate-900">Créer votre compte</h1>
-          <p className="mt-2 text-sm text-slate-600">14 jours d'essai gratuit. Sans engagement.</p>
+          <p className="mt-2 text-sm text-slate-600">14 jours d&apos;essai gratuit. Sans engagement.</p>
         </div>
 
         <form action={formAction} className="space-y-4">

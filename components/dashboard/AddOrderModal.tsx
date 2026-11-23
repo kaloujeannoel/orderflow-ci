@@ -6,10 +6,14 @@ import { toast } from "sonner";
 import { addOrderAction } from "@/app/(dashboard)/commandes/actions";
 import { createClient } from "@/lib/supabase/client";
 
+interface OptionItem { id: string; name: string }
+interface OrderProduct extends OptionItem { sale_price: number; stock_quantity: number }
+interface OrderItem { product_id: string; quantity: number }
+
 export function AddOrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [customers, setCustomers] = useState<any[]>([]);
-  const [products, setProducts] = useState<any[]>([]);
-  const [items, setItems] = useState<any[]>([]);
+  const [customers, setCustomers] = useState<OptionItem[]>([]);
+  const [products, setProducts] = useState<OrderProduct[]>([]);
+  const [items, setItems] = useState<OrderItem[]>([]);
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
@@ -29,14 +33,16 @@ export function AddOrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
       }
     };
     loadData();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems([{ product_id: "", quantity: 1 }]);
   }, [isOpen]);
 
   const addItem = () => setItems([...items, { product_id: "", quantity: 1 }]);
   const removeItem = (index: number) => setItems(items.filter((_, i) => i !== index));
-  const updateItem = (index: number, field: string, value: any) => {
+  const updateItem = (index: number, field: keyof OrderItem, value: string | number) => {
     const newItems = [...items];
-    newItems[index][field] = value;
+    if (field === "product_id" && typeof value === "string") newItems[index] = { ...newItems[index], product_id: value };
+    if (field === "quantity" && typeof value === "number") newItems[index] = { ...newItems[index], quantity: value };
     setItems(newItems);
   };
 

@@ -6,9 +6,17 @@ import { AddOrderModal } from "@/components/dashboard/AddOrderModal";
 import { createClient } from "@/lib/supabase/client";
 import { updateOrderStatusAction } from "./actions";
 
+interface Order {
+  id: string;
+  order_number: string;
+  status: string;
+  total: number;
+  customers: { name: string } | null;
+}
+
 export default function OrdersPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchOrders = async () => {
@@ -25,6 +33,7 @@ export default function OrdersPage() {
     setLoading(false);
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchOrders(); }, []);
 
   const handleCloseModal = () => { 

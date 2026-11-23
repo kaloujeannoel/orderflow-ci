@@ -6,9 +6,18 @@ import { NewSaleModal } from "@/components/dashboard/NewSaleModal";
 import { createClient } from "@/lib/supabase/client";
 import { generateInvoicePDF } from "@/lib/pdf/invoice";
 
+interface Sale {
+  id: string;
+  sale_number: string | null;
+  created_at: string;
+  payment_method: string;
+  total: number;
+  customers: { name: string } | null;
+}
+
 export default function SalesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [sales, setSales] = useState<any[]>([]);
+  const [sales, setSales] = useState<Sale[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchSales = async () => {
@@ -29,6 +38,7 @@ export default function SalesPage() {
     setLoading(false);
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchSales(); }, []);
 
   const handleCloseModal = () => { 
@@ -37,7 +47,7 @@ export default function SalesPage() {
   };
 
   // Fonction pour générer le PDF
-  const handleDownloadPDF = async (sale: any) => {
+  const handleDownloadPDF = async (sale: Sale) => {
     const supabase = createClient();
     
     // Récupérer les détails des produits vendus

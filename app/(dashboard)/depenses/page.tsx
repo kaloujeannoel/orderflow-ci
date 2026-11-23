@@ -5,9 +5,17 @@ import { Receipt, Plus } from "lucide-react";
 import { AddExpenseModal } from "@/components/dashboard/AddExpenseModal";
 import { createClient } from "@/lib/supabase/client";
 
+interface Expense {
+  id: string;
+  expense_date: string;
+  category: string;
+  description: string | null;
+  amount: number;
+}
+
 export default function ExpensesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [expenses, setExpenses] = useState<any[]>([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchExpenses = async () => {
@@ -24,6 +32,7 @@ export default function ExpensesPage() {
     setLoading(false);
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchExpenses(); }, []);
 
   const handleCloseModal = () => { 

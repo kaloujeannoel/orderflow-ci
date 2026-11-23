@@ -30,12 +30,12 @@ export function Sidebar() {
       {/* Bouton Menu (Mobile uniquement) */}
       <button 
         onClick={() => setIsOpen(true)}
-        className="fixed top-4 left-4 z-40 grid h-10 w-10 place-items-center rounded-lg bg-white shadow-md lg:hidden"
+        className="fixed top-4 left-4 z-40 grid h-10 w-10 place-items-center rounded-lg bg-slate-900 text-white shadow-md lg:hidden"
       >
-        <Menu className="h-5 w-5 text-slate-700" />
+        <Menu className="h-5 w-5" />
       </button>
 
-      {/* Fond sombre (Overlay) quand le menu est ouvert */}
+      {/* Fond sombre (Overlay) quand le menu est ouvert sur mobile */}
       {isOpen && (
         <div 
           className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm lg:hidden" 
@@ -43,27 +43,26 @@ export function Sidebar() {
         />
       )}
 
-      {/* La Sidebar */}
+      {/* La Sidebar (Fond Sombre) */}
       <aside className={`
-        fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-slate-200 bg-white transition-transform duration-300
+        fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#1E293B] text-slate-300 transition-transform duration-300
         ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}>
         {/* Logo */}
-        <div className="flex h-16 items-center justify-between border-b border-slate-100 px-6">
-          <div className="flex items-center gap-2">
+        <div className="flex h-16 items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-2 text-white">
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white">
               <ShoppingBag className="h-4 w-4" />
             </span>
-            <span className="text-lg font-bold text-slate-900">OrderFlow CI</span>
+            <span className="text-lg font-bold tracking-tight">OrderFlow CI</span>
           </div>
-          {/* Bouton Fermer (Mobile uniquement) */}
-          <button onClick={() => setIsOpen(false)} className="lg:hidden text-slate-400">
+          <button onClick={() => setIsOpen(false)} className="lg:hidden text-slate-400 hover:text-white">
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1 overflow-y-auto p-4">
+        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
           {NAV.map((item) => {
             const Icon = item.icon;
             const active = pathname === item.href;
@@ -71,11 +70,11 @@ export function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setIsOpen(false)} // Ferme le menu au clic sur mobile
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                   active 
-                    ? "bg-brand-50 text-brand-700" 
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    ? "bg-brand-600 text-white" 
+                    : "hover:bg-slate-800 hover:text-white"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -86,9 +85,9 @@ export function Sidebar() {
         </nav>
 
         {/* Déconnexion */}
-        <div className="border-t border-slate-100 p-4">
+        <div className="p-4 border-t border-slate-800">
           <form action={logoutAction}>
-            <button type="submit" className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-600 transition-colors hover:bg-red-50">
+            <button type="submit" className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 transition-colors hover:bg-slate-800 hover:text-red-300">
               <LogOut className="h-4 w-4" />
               Se déconnecter
             </button>

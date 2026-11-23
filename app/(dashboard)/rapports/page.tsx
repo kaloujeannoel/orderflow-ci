@@ -51,7 +51,7 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Rapports & Analyses</h1>
-        <p className="mt-1 text-sm text-slate-600">Vue d'ensemble de votre rentabilité.</p>
+        <p className="mt-1 text-sm text-slate-600">Vue d&apos;ensemble de votre rentabilité.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -59,7 +59,7 @@ export default function ReportsPage() {
           <div className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-brand-50 text-brand-600">
             <Wallet className="h-5 w-5" />
           </div>
-          <p className="text-xs font-medium text-slate-500">Chiffre d'affaires</p>
+          <p className="text-xs font-medium text-slate-500">Chiffre d&apos;affaires</p>
           <p className="mt-1 text-xl font-bold text-slate-900">{data.revenue.toLocaleString("fr-CI")} FCFA</p>
         </div>
 

@@ -1,12 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Settings, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 
+interface Business {
+  id: string;
+  name: string;
+  phone: string | null;
+  city: string | null;
+}
+
 export default function SettingsPage() {
-  const [business, setBusiness] = useState<any>(null);
+  const [business, setBusiness] = useState<Business | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -26,6 +33,7 @@ export default function SettingsPage() {
 
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!business) return;
     setSaving(true);
     const formData = new FormData(e.currentTarget);
     const supabase = createClient();
@@ -54,15 +62,15 @@ export default function SettingsPage() {
         <form onSubmit={handleSave} className="space-y-4">
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-700">Nom du commerce</label>
-            <input name="name" defaultValue={business?.name} required className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
+            <input name="name" defaultValue={business?.name ?? ""} required className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-700">Téléphone</label>
-            <input name="phone" defaultValue={business?.phone} className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
+            <input name="phone" defaultValue={business?.phone ?? ""} className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-700">Ville</label>
-            <input name="city" defaultValue={business?.city} className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
+            <input name="city" defaultValue={business?.city ?? ""} className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
           </div>
           <div className="pt-4">
             <button type="submit" disabled={saving} className="btn-primary flex items-center gap-2">

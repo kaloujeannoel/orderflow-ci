@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${inter.variable} ${jakarta.variable}`} suppressHydrationWarning>
-      {/* On force m-0 p-0 pour être sûr qu'il n'y a aucune marge */}
       <body className="min-h-screen font-sans antialiased bg-slate-50 m-0 p-0">
         {children}
         <Toaster position="top-right" richColors />

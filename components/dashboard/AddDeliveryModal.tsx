@@ -6,9 +6,11 @@ import { toast } from "sonner";
 import { addDeliveryAction } from "@/app/(dashboard)/livraisons/actions";
 import { createClient } from "@/lib/supabase/client";
 
+interface CustomerOption { id: string; name: string }
+
 export function AddDeliveryModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [state, formAction, pending] = useActionState(addDeliveryAction, undefined);
-  const [customers, setCustomers] = useState<any[]>([]);
+  const [customers, setCustomers] = useState<CustomerOption[]>([]);
 
   useEffect(() => {
     if (!isOpen) return;

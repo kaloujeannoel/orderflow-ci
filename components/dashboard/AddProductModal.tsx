@@ -45,7 +45,7 @@ export function AddProductModal({ isOpen, onClose }: { isOpen: boolean; onClose:
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">Prix d'achat (FCFA)</label>
+              <label className="mb-1 block text-sm font-medium text-slate-700">Prix d&apos;achat (FCFA)</label>
               <input name="purchase_price" type="number" defaultValue={0} className="w-full rounded-lg border px-3 py-2 text-sm focus:border-brand-600 focus:outline-none" />
             </div>
             <div>

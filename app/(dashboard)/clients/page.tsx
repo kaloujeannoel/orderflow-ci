@@ -5,9 +5,16 @@ import { Users, Plus } from "lucide-react";
 import { AddCustomerModal } from "@/components/dashboard/AddCustomerModal";
 import { createClient } from "@/lib/supabase/client";
 
+interface Customer {
+  id: string;
+  name: string;
+  phone: string | null;
+  city: string | null;
+}
+
 export default function CustomersPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [customers, setCustomers] = useState<any[]>([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchCustomers = async () => {
@@ -24,6 +31,8 @@ export default function CustomersPage() {
     setLoading(false);
   };
 
+  // Chargement initial asynchrone depuis Supabase.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchCustomers(); }, []);
 
   const handleCloseModal = () => { setIsModalOpen(false); fetchCustomers(); };

@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, ShoppingBag, ShieldCheck, Smartphone } from "
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-slate-50">
+    <div className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-slate-50 flex flex-col">
       
       {/* 👇 LE BANDEAU DÉFILANT EST ICI 👇 */}
       <AnnouncementBar />
@@ -29,13 +29,13 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section : on réduit l'espace en haut pour coller au header */}
-      <main>
+      {/* Hero Section */}
+      <main className="flex-1">
         <section className="container-page grid items-center gap-8 py-8 lg:grid-cols-2 lg:py-16">
           
           <div className="text-center lg:text-left">
             <span className="inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-sm font-medium text-brand-800 mb-4">
-              Nouveau : disponible en Côte d'Ivoire
+              Nouveau : disponible en Côte d&apos;Ivoire
             </span>
             
             <h1 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:mx-0 lg:text-6xl">
@@ -56,22 +56,47 @@ export default function HomePage() {
             </div>
             
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-600 lg:justify-start">
-              <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-brand-600" /> 14 jours d'essai</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-brand-600" /> 14 jours d&apos;essai</span>
               <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-brand-600" /> Données sécurisées</span>
               <span className="flex items-center gap-2"><Smartphone className="h-4 w-4 text-brand-600" /> Compatible mobile</span>
             </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-            <img 
+            <Image
               src="/hero-image.svg" 
               alt="Illustration OrderFlow CI" 
+              width={640}
+              height={640}
               className="relative w-full drop-shadow-2xl"
             />
           </div>
 
         </section>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-200 bg-white py-8">
+        <div className="container-page flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex items-center gap-2">
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white">
+              <ShoppingBag className="h-4 w-4" />
+            </span>
+            <span className="text-lg font-bold text-slate-900">OrderFlow CI</span>
+          </div>
+          
+          <div className="flex gap-6 text-sm text-slate-600">
+            <Link href="/faq" className="hover:text-brand-600">FAQ</Link>
+            <Link href="/confidentialite" className="hover:text-brand-600">Confidentialité</Link>
+            <Link href="mailto:contact@orderflow.ci" className="hover:text-brand-600">Contact</Link>
+          </div>
+
+          <p className="text-xs text-slate-400">
+            © {new Date().getFullYear()} OrderFlow CI. Tous droits réservés.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
+import Image from "next/image";

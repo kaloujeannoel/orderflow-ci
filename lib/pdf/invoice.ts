@@ -76,7 +76,7 @@ export function generateInvoicePDF(data: InvoiceData) {
     },
   });
 
-  const finalY = (doc as any).lastAutoTable.finalY + 10;
+  const finalY = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 10;
 
   // --- Total ---
   doc.setFontSize(12);
