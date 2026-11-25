@@ -9,6 +9,9 @@ export function Header({ userEmail }: { userEmail: string }) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   
+  // Compteur de notifications (à 0 pour l'instant)
+  const [notificationCount, setNotificationCount] = useState(0);
+  
   const profileRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
 
@@ -50,15 +53,28 @@ export function Header({ userEmail }: { userEmail: string }) {
             className="relative text-slate-400 hover:text-slate-600 transition-colors"
           >
             <Bell className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
-              3
-            </span>
+            
+            {/* Le badge ne s'affiche que si notificationCount > 0 */}
+            {notificationCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                {notificationCount}
+              </span>
+            )}
           </button>
 
           {isNotificationsOpen && (
             <div className="absolute right-0 top-full mt-2 w-64 rounded-lg bg-white p-4 shadow-xl border border-slate-100 z-50">
               <p className="text-sm font-medium text-slate-900 mb-2">Notifications</p>
-              <div className="text-xs text-slate-500 p-2 bg-slate-50 rounded">📦 Nouvelle commande livrée.</div>
+              
+              {notificationCount === 0 ? (
+                <div className="text-xs text-slate-500 p-2 bg-slate-50 rounded text-center">
+                  Aucune nouvelle notification
+                </div>
+              ) : (
+                <div className="text-xs text-slate-500 p-2 bg-slate-50 rounded">
+                  📦 Vous avez {notificationCount} nouvelle(s) notification(s).
+                </div>
+              )}
             </div>
           )}
         </div>

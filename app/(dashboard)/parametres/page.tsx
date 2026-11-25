@@ -80,6 +80,46 @@ export default function SettingsPage() {
           </div>
         </form>
       </div>
+
+      {/* NOUVELLE SECTION : Aide & Support */}
+      <div className="card p-6 mt-8">
+        <h2 className="text-lg font-bold text-slate-900 mb-2">Aide & Support</h2>
+        <p className="text-sm text-slate-600 mb-6">
+          Un problème technique ? Une question sur votre abonnement ? Notre équipe est là pour vous aider.
+        </p>
+        
+        <div className="flex flex-col gap-4">
+          {/* Lien WhatsApp */}
+          <a 
+            href="https://wa.me/2250789399776?text=Bonjour%20l'équipe%20OrderFlow%20CI,%20j'ai%20besoin%20d'aide." 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-3 rounded-xl border border-slate-200 hover:border-green-500 hover:bg-green-50 transition-colors group"
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-full bg-green-100 text-green-600 group-hover:bg-green-500 group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-900 group-hover:text-green-700">WhatsApp Support</p>
+              <p className="text-xs text-slate-500">+225 07 89 39 97 76</p>
+            </div>
+          </a>
+          
+          {/* Lien Email */}
+          <a 
+            href="mailto:orderflowci@gmail.com" 
+            className="flex items-center gap-4 p-3 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors group"
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-900 group-hover:text-blue-700">Email Support</p>
+              <p className="text-xs text-slate-500">orderflowci@gmail.com</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,7 @@
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { AnnouncementBar } from "@/components/ui/AnnouncementBar";
 import Link from "next/link";
+import Image from "next/image"; // Import corrigé (remonté en haut)
 import { ArrowRight, CheckCircle2, ShoppingBag, ShieldCheck, Smartphone } from "lucide-react";
 
 export default function HomePage() {
@@ -88,7 +90,7 @@ export default function HomePage() {
           <div className="flex gap-6 text-sm text-slate-600">
             <Link href="/faq" className="hover:text-brand-600">FAQ</Link>
             <Link href="/confidentialite" className="hover:text-brand-600">Confidentialité</Link>
-            <Link href="mailto:contact@orderflow.ci" className="hover:text-brand-600">Contact</Link>
+            <a href="mailto:orderflowci@gmail.com" className="hover:text-brand-600">Contact</a>
           </div>
 
           <p className="text-xs text-slate-400">
@@ -96,7 +98,9 @@ export default function HomePage() {
           </p>
         </div>
       </footer>
+
+      {/* 👇 LE BOUTON WHATSAPP EST ICI 👇 */}
+      <WhatsAppButton />
     </div>
   );
 }
-import Image from "next/image";

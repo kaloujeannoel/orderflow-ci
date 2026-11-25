@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { 
   LayoutDashboard, Package, Users, ShoppingCart, Wallet, 
-  Receipt, Truck, BarChart3, Settings, LogOut, ShoppingBag, Menu, X 
+  Receipt, Truck, BarChart3, Settings, LogOut, ShoppingBag, X, MessageCircle 
 } from "lucide-react";
 import { logoutAction } from "@/app/(auth)/actions";
 
@@ -27,14 +27,6 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Bouton Menu (Mobile uniquement) */}
-      <button 
-        onClick={() => setIsOpen(true)}
-        className="fixed top-4 left-4 z-40 grid h-10 w-10 place-items-center rounded-lg bg-slate-900 text-white shadow-md lg:hidden"
-      >
-        <Menu className="h-5 w-5" />
-      </button>
-
       {/* Fond sombre (Overlay) quand le menu est ouvert sur mobile */}
       {isOpen && (
         <div 
@@ -56,6 +48,7 @@ export function Sidebar() {
             </span>
             <span className="text-lg font-bold tracking-tight">OrderFlow CI</span>
           </div>
+          {/* Bouton Fermer (Mobile uniquement) */}
           <button onClick={() => setIsOpen(false)} className="lg:hidden text-slate-400 hover:text-white">
             <X className="h-5 w-5" />
           </button>
@@ -83,6 +76,19 @@ export function Sidebar() {
             );
           })}
         </nav>
+
+        {/* Section Aide WhatsApp (Nouveau) */}
+        <div className="px-3 pb-2 border-t border-slate-800 pt-4">
+          <a
+            href="https://wa.me/2250789399776?text=Bonjour%20l'équipe%20OrderFlow%20CI,%20j'ai%20besoin%20d'aide."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-green-400 transition-colors hover:bg-slate-800 hover:text-green-300"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Aide WhatsApp
+          </a>
+        </div>
 
         {/* Déconnexion */}
         <div className="p-4 border-t border-slate-800">
